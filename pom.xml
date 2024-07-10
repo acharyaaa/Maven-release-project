@@ -86,13 +86,7 @@
       <id>apache.website</id>
       <url>scm:svn:https://svn.apache.org/repos/asf/maven/website/components/${maven.site.path}</url>
     </site>
-  <distributionManagement>
-  <snapshotRepository>
-    <id>snapshots</id>
-    <url>http://3.107.26.88:8081/nexus/content/repositories/snapshots</url>
-  </snapshotRepository>
-  </distributionManagement>
-
+ 
   <properties>
     <scmVersion>2.1.0</scmVersion>
     <mavenVersion>3.6.3</mavenVersion>
@@ -109,6 +103,13 @@
     <mavenHelpPluginVersion>${version.maven-help-plugin}</mavenHelpPluginVersion>
     <sisuVersion>${version.sisu-maven-plugin}</sisuVersion>
   </properties>
+    
+  <distributionManagement>
+  <snapshotRepository>
+    <id>snapshots</id>
+    <url>http://3.107.26.88:8081/nexus/content/repositories/snapshots</url>
+  </snapshotRepository>
+  </distributionManagement>
 
   <dependencyManagement>
     <dependencies>
