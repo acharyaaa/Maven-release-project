@@ -73,6 +73,7 @@
     <tag>HEAD</tag>
     <url>https://github.com/acharyaaa/Maven-release-project/tree/${project.scm.tag}</url>
   </scm>
+  <!--
   <issueManagement>
     <system>jira</system>
     <url>https://issues.apache.org/jira/browse/MRELEASE</url>
@@ -81,7 +82,8 @@
     <system>Jenkins</system>
     <url>https://ci-maven.apache.org/job/Maven/job/maven-box/job/maven-release/</url>
   </ciManagement>
- 
+  -->
+  
   <properties>
     <scmVersion>2.1.0</scmVersion>
     <mavenVersion>3.6.3</mavenVersion>
