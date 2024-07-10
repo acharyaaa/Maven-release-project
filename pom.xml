@@ -84,7 +84,7 @@
   </ciManagement>
   -->
   
-  <properties>
+<properties>
     <scmVersion>2.1.0</scmVersion>
     <mavenVersion>3.6.3</mavenVersion>
     <resolverVersion>1.4.1</resolverVersion>
@@ -93,7 +93,6 @@
     <junitVersion>4.13.2</junitVersion>
     <maven.site.path>maven-release-archives/maven-release-LATEST</maven.site.path>
     <project.build.outputTimestamp>2024-06-14T08:38:55Z</project.build.outputTimestamp>
-
     <mavenCompilerPluginVersion>${version.maven-compiler-plugin}</mavenCompilerPluginVersion>
     <mavenInvokerPluginVersion>${version.maven-invoker-plugin}</mavenInvokerPluginVersion>
     <mavenEnforcerPluginVersion>${version.maven-enforcer-plugin}</mavenEnforcerPluginVersion>
