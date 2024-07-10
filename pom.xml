@@ -1,331 +1,109 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~ Licensed to the Apache Software Foundation (ASF) under one
-  ~ or more contributor license agreements.  See the NOTICE file
-  ~ distributed with this work for additional information
-  ~ regarding copyright ownership.  The ASF licenses this file
-  ~ to you under the Apache License, Version 2.0 (the
-  ~ "License"); you may not use this file except in compliance
-  ~ with the License.  You may obtain a copy of the License at
-  ~
-  ~   http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing,
-  ~ software distributed under the License is distributed on an
-  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-  ~ KIND, either express or implied.  See the License for the
-  ~ specific language governing permissions and limitations
-  ~ under the License.
-  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
     <groupId>org.apache.maven</groupId>
-    <artifactId>maven-parent</artifactId>
-    <version>42</version>
-    <relativePath />
-  </parent>
+    <artifactId>my-release-project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-  <groupId>org.apache.maven.release</groupId>
-  <artifactId>maven-release</artifactId>
-  <version>3.1.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <name>My Release Project</name>
+    <url>http://maven.apache.org</url>
 
-  <name>Maven Release</name>
-  <description>Tooling to release a project with Maven, saving a lot of repetitive, manual work.</description>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
 
-  <contributors>
-    <contributor>
-      <name>John R Fallows</name>
-    </contributor>
-    <contributor>
-      <name>Gertjan Gaillet</name>
-    </contributor>
-    <contributor>
-      <name>Russ Kociuba</name>
-    </contributor>
-    <contributor>
-      <name>Georges-Etienne Legendre</name>
-    </contributor>
-    <contributor>
-      <name>Henning Schmiedehausen</name>
-    </contributor>
-    <contributor>
-      <name>Thorsten Heit</name>
-    </contributor>
-    <contributor>
-      <name>Niels Basjes</name>
-    </contributor>
-  </contributors>
-
-  <modules>
-    <module>maven-release-api</module>
-    <module>maven-release-manager</module>
-    <module>maven-release-policies/maven-release-oddeven-policy</module>
-    <module>maven-release-policies/maven-release-semver-policy</module>
-    <module>maven-release-plugin</module>
-  </modules>
-
-  <scm>
-    <connection>scm:git:https://github.com/acharyaaa/Maven-release-project.git</connection>
-    <developerConnection>scm:git:https://github.com/acharyaaa/Maven-release-project.git</developerConnection>
-    <tag>HEAD</tag>
-    <url>https://github.com/acharyaaa/Maven-release-project/tree/${project.scm.tag}</url>
-  </scm>
-  <!--
-  <issueManagement>
-    <system>jira</system>
-    <url>https://issues.apache.org/jira/browse/MRELEASE</url>
-  </issueManagement>
-  <ciManagement>
-    <system>Jenkins</system>
-    <url>https://ci-maven.apache.org/job/Maven/job/maven-box/job/maven-release/</url>
-  </ciManagement>
-  -->
-  
-<properties>
-    <scmVersion>2.1.0</scmVersion>
-    <mavenVersion>3.6.3</mavenVersion>
-    <resolverVersion>1.4.1</resolverVersion>
-    <wagonVersion>3.5.3</wagonVersion>
-    <slf4jVersion>1.7.36</slf4jVersion>
-    <junitVersion>4.13.2</junitVersion>
-    <maven.site.path>maven-release-archives/maven-release-LATEST</maven.site.path>
-    <project.build.outputTimestamp>2024-06-14T08:38:55Z</project.build.outputTimestamp>
-    <mavenCompilerPluginVersion>${version.maven-compiler-plugin}</mavenCompilerPluginVersion>
-    <mavenInvokerPluginVersion>${version.maven-invoker-plugin}</mavenInvokerPluginVersion>
-    <mavenEnforcerPluginVersion>${version.maven-enforcer-plugin}</mavenEnforcerPluginVersion>
-    <mavenHelpPluginVersion>${version.maven-help-plugin}</mavenHelpPluginVersion>
-    <sisuVersion>${version.sisu-maven-plugin}</sisuVersion>
-  </properties>
- <distributionManagement>
+  <distributionManagement>
 <snapshotRepository>
   <id>snapshots</id>
   <url>http://3.107.26.88:8081/nexus/content/repositories/snapshots</url>
 </snapshotRepository>
 </distributionManagement>
-   <dependencyManagement>
+  
+
     <dependencies>
-      <dependency>
-        <groupId>org.apache.maven</groupId>
-        <artifactId>maven-artifact</artifactId>
-        <version>${mavenVersion}</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven</groupId>
-        <artifactId>maven-core</artifactId>
-        <version>${mavenVersion}</version>
-        <scope>provided</scope>
-        <exclusions>
-          <exclusion>
-            <groupId>org.sonatype.plexus</groupId>
-            <artifactId>plexus-sec-dispatcher</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven</groupId>
-        <artifactId>maven-compat</artifactId>
-        <version>${mavenVersion}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven</groupId>
-        <artifactId>maven-model</artifactId>
-        <version>${mavenVersion}</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven</groupId>
-        <artifactId>maven-model-builder</artifactId>
-        <version>${mavenVersion}</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven</groupId>
-        <artifactId>maven-plugin-api</artifactId>
-        <version>${mavenVersion}</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven</groupId>
-        <artifactId>maven-repository-metadata</artifactId>
-        <version>${mavenVersion}</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven</groupId>
-        <artifactId>maven-settings</artifactId>
-        <version>${mavenVersion}</version>
-        <scope>provided</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.maven.resolver</groupId>
-        <artifactId>maven-resolver-api</artifactId>
-        <version>${resolverVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven.resolver</groupId>
-        <artifactId>maven-resolver-util</artifactId>
-        <version>${resolverVersion}</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.maven.resolver</groupId>
-        <artifactId>maven-resolver-spi</artifactId>
-        <version>${resolverVersion}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven.resolver</groupId>
-        <artifactId>maven-resolver-impl</artifactId>
-        <version>${resolverVersion}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven.resolver</groupId>
-        <artifactId>maven-resolver-connector-basic</artifactId>
-        <version>${resolverVersion}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven.resolver</groupId>
-        <artifactId>maven-resolver-transport-file</artifactId>
-        <version>${resolverVersion}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven.resolver</groupId>
-        <artifactId>maven-resolver-transport-wagon</artifactId>
-        <version>${resolverVersion}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-provider-api</artifactId>
-        <version>${wagonVersion}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven.wagon</groupId>
-        <artifactId>wagon-http</artifactId>
-        <version>${wagonVersion}</version>
-        <scope>test</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>org.apache.maven.scm</groupId>
-        <artifactId>maven-scm-api</artifactId>
-        <version>${scmVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven.scm</groupId>
-        <artifactId>maven-scm-manager-plexus</artifactId>
-        <version>${scmVersion}</version>
-        <scope>runtime</scope>
-        <exclusions>
-          <exclusion>
-            <groupId>org.codehaus.plexus</groupId>
-            <artifactId>plexus-container-default</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven.scm</groupId>
-        <artifactId>maven-scm-providers-standard</artifactId>
-        <version>${scmVersion}</version>
-        <type>pom</type>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven.scm</groupId>
-        <artifactId>maven-scm-provider-svn-commons</artifactId>
-        <version>${scmVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.maven.scm</groupId>
-        <artifactId>maven-scm-test</artifactId>
-        <version>${scmVersion}</version>
-        <scope>test</scope>
-        <exclusions>
-          <exclusion>
-            <groupId>org.sonatype.plexus</groupId>
-            <artifactId>plexus-sec-dispatcher</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>${slf4jVersion}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-simple</artifactId>
-        <version>${slf4jVersion}</version>
-        <scope>test</scope>
-      </dependency>
-
-      <dependency>
-        <groupId>javax.inject</groupId>
-        <artifactId>javax.inject</artifactId>
-        <version>1</version>
-      </dependency>
-
-      <dependency>
-        <groupId>org.jdom</groupId>
-        <artifactId>jdom2</artifactId>
-        <version>2.0.6.1</version>
-      </dependency>
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>${junitVersion}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
-        <version>2.28.2</version>
-      </dependency>
-      <dependency>
-        <groupId>org.xmlunit</groupId>
-        <artifactId>xmlunit-core</artifactId>
-        <version>2.10.0</version>
-      </dependency>
-      <dependency>
-        <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest-core</artifactId>
-        <version>2.2</version>
-      </dependency>
+        <!-- Add your project dependencies here -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-  </dependencyManagement>
 
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.rat</groupId>
-          <artifactId>apache-rat-plugin</artifactId>
-          <configuration>
-            <excludes combine.children="append">
-              <exclude>.repository</exclude>
-              <exclude>**/*.iml</exclude>
-              <exclude>**/target/**</exclude>
-              <exclude>**/.gitattributes</exclude>
-            </excludes>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.eclipse.sisu</groupId>
-        <artifactId>sisu-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <tagNameFormat>@{project.version}</tagNameFormat>
+                    <releaseProfiles>release</releaseProfiles>
+                    <useReleaseProfile>false</useReleaseProfile>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.diffplug.spotless</groupId>
+                <artifactId>spotless-maven-plugin</artifactId>
+                <version>2.43.0</version>
+                <configuration>
+                    <java>
+                        <googleJavaFormat>
+                            <version>1.7</version>
+                        </googleJavaFormat>
+                        <importOrder>
+                            <file>.spotless/spotless.importorder</file>
+                        </importOrder>
+                    </java>
+                    <format>
+                        <name>misc</name>
+                        <includes>
+                            <include>src/main/resources/**/*.xml</include>
+                            <include>src/main/resources/**/*.yml</include>
+                        </includes>
+                        <trimTrailingWhitespace/>
+                        <endWithNewline/>
+                    </format>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                            <goal>apply</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-deploy-plugin</artifactId>
+                        <version>2.8.2</version>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
